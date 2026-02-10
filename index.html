@@ -158,11 +158,15 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   noBtn.addEventListener("click", () => {
-    yesScale += 0.4;
+    yesScale += 0.2;
     yesBtn.style.transform = `scale(${yesScale})`;
+  
+    const bubbleWidth = bubble.offsetWidth;
+    const btnWidth = noBtn.offsetWidth;
 
-    const maxOffset = bubble.offsetWidth - noBtn.offsetWidth - 20;
-    offset = Math.min(offset + 20, maxOffset);
+    const maxOffset = bubbleWidth - btnWidth - 16; 
+
+    offset = Math.min(offset + 10, maxOffset);
     noBtn.style.transform = `translateX(${offset}px)`;
 
     noBtn.textContent = funnyTexts[textIndex];
