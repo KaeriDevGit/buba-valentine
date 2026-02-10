@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Валентинка</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    }
+
+    .bubble {
+      width: 1000px;
+      height: 800px;
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .bubble img {
+      width: 70%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      height: 48px;
+      margin-top: 50px;
+    }
+
+   button {
+    width: 130px;        
+    height: 70px;        
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;  
+    word-break: break-word; 
+    overflow: hidden;
+    line-height: 1.2em;
+    font-size: 16px;    
+}
+ 
+    .yes {
+      background: #ff4d6d;
+      color: #fff;
+    }
+
+    .no {
+      background: #e0e0e0;
+      color: #333;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bubble">
+    <img src="https://i.pinimg.com/736x/fe/af/59/feaf59892642b5ac9d24a0aa90363eaa.jpg" alt="photo">
+
+    <h2>Будешь моей валентинкой?</h2>
+
+    <div class="buttons">
+      <button class="yes" id="yesBtn">Да</button>
+      <button class="no" id="noBtn">Нет</button>
+    </div>
+  </div>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const bubble = document.querySelector('.bubble');
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+
+  let offset = 0;
+  let yesScale = 1;
+  let textIndex = 0;
+
+  const funnyTexts = [
+    "Скажи да",
+    "Не попал",
+    "Ой, ну ладно тебе…",
+    "Я могу и обидеться",
+    "Уверен?",
+    "Попробуй ещё раз",
+    "Я тебя люблю",
+    "Ну пожалуйста",
+    "У тебя нет выбора",
+    "Не та кнопка"
+    
+    
+  ];
+
+  noBtn.addEventListener("click", () => {
+    yesScale += 0.4;
+    yesBtn.style.transform = `scale(${yesScale})`;
+
+    const maxOffset = bubble.offsetWidth - noBtn.offsetWidth - 20;
+    offset = Math.min(offset + 40, maxOffset);
+    noBtn.style.transform = `translateX(${offset}px)`;
+
+    noBtn.textContent = funnyTexts[textIndex];
+    textIndex = (textIndex + 1) % funnyTexts.length;
+  });
+   yesBtn.addEventListener("click", () => {
+
+    const header = document.querySelector("h2");
+    header.textContent = "УРААААА!";
+    header.style.fontSize = "3em";
+    header.style.color = "#e91e63";
+    header.style.textAlign = "center";
+     header.style.marginTop = "10px";
+    header.style.marginBottom = "10px";
+
+    const img = bubble.querySelector("img");
+    img.src = "https://media1.tenor.com/m/nMnSL5slLtoAAAAd/%D0%B1%D1%83%D0%B1%D0%B0-%D0%B1%D1%83%D0%B1%D0%B0-%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D1%82%D0%B5%D0%BA%D0%B0.gif";
+    yesBtn.style.transform = "scale(1)";
+    noBtn.style.transform = "scale(1)";
+    noBtn.innerText = "Нет";
+
+     yesBtn.disabled = true;
+    noBtn.disabled = true;
+
+    yesBtn.style.backgroundColor = "#ccc"; 
+    noBtn.style.backgroundColor = "#ccc";
+     yesBtn.style.color = "#666"; 
+    noBtn.style.color = "#666";
+  });
+});
+</script>
+
+
+</body>
+</html>
