@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yesBtn.style.transform = `scale(${yesScale})`;
 
     const maxOffset = bubble.offsetWidth - noBtn.offsetWidth - 20;
-    offset = Math.min(offset + 40, maxOffset);
+    offset = Math.min(offset + 20, maxOffset);
     noBtn.style.transform = `translateX(${offset}px)`;
 
     noBtn.textContent = funnyTexts[textIndex];
